@@ -2,12 +2,17 @@
 <html>
   <head>
     <title>Movies</title>
+    <style>
+  li {
+    margin-bottom: 15px;
+  }
+</style>
   </head>
   <body>
     <h1>Top 10 Movies</h1>
     <ol>
-      <% for (let i = 0; i < movies.length; i++) { %>
-        <li><%= movies[i] %></li>
+      <% for (key in arr) { %>
+        <li><%= JSON.stringify(arr[key]) %></li>
       <% } %>
     </ol>
   </body>
