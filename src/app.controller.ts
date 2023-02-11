@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Header, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -11,6 +11,7 @@ export class AppController {
   // }
 
   @Get('/qr')
+  @Header('Refresh', '10')
   @Render('qr')
   generateCode(): any {
     return this.appService.generateCode();

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as QRCode from 'qrcode';
 import { URL } from './common/config/env.config';
-import { Cron } from '@nestjs/schedule';
+import { Cron, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
@@ -10,7 +10,15 @@ export class AppService {
   }
 
   async generateCode(): Promise<any> {
-    const qr = await QRCode.toDataURL(URL);
+    const url = [
+      'www.google.com',
+      'www.imdb.com',
+      'www.o2tvseries.com',
+      'www.premierleague.com',
+    ];
+
+    const urlShown = Math.floor(Math.random() * url.length);
+    const qr = await QRCode.toDataURL(url[urlShown]);
 
     console.log(qr);
 
@@ -19,8 +27,8 @@ export class AppService {
     return { qr };
   }
 
-  @Cron('10 * * * * *')
-  handleCron() {
+  @Interval(10000)
+  handleInterval() {
     console.log('done');
     this.generateCode();
   }
