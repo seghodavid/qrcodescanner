@@ -15,10 +15,12 @@ export class AppService {
       JSON.stringify(movies),
     )}`;
 
+    console.log(url);
+
     const urlShown = Math.floor(Math.random() * url.length);
     const qr = await QRCode.toDataURL(url[urlShown]);
 
-    console.log(qr);
+    // console.log(qr);
 
     // 'http://localhost:3000/movies'
 
